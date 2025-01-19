@@ -1,5 +1,5 @@
-from datetime import datetime
 import json
+
 
 class MatchEvents:
     def __init__(self):
@@ -15,10 +15,15 @@ class MatchEvents:
         return {"events": self.data}
 
 class Match:
+    from datetime import datetime
     def __init__(self,was_played: bool, hteam: str, ateam: str,dt: datetime,hgoals: int,agoals: int,hevents: MatchEvents,aevents: MatchEvents):
         self.was_played = was_played
-        self.home_team = hteam
-        self.away_team = ateam
+        if hteam and ateam:
+            self.home_team = hteam.strip()
+            self.away_team = ateam.strip()
+        else:
+            self.home_team = hteam
+            self.away_team = ateam
         if dt:
             self.date = dt.date()
             self.time = dt.time()
@@ -87,7 +92,9 @@ class FixtureCollection:
         return len(self.data)
 
     def get_all(self):
-        return self.data
+        fixts = []
+        for fix in self.data:
+            fixts += fix.to_dict()
 
     def get_json(self):
         return json.dumps([fixture.to_dict() for fixture in self.data])

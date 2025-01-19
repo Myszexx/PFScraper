@@ -37,7 +37,7 @@ class LeagueTable:
 
     def is_team_in_league(self, team_name):
         for team in self.data:
-            print(f'{team['team']}: {team_name}')
             if team['team'] == team_name.strip():
                 return True
-            return False
+        print(f'Team {team_name} not found in league')
+        return False

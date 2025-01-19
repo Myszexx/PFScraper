@@ -1,11 +1,9 @@
 import datetime
 import re
-
 import scraper.utils.utils as utils
 from scraper.classes.FixtureCollection import FixtureCollection, Match, MatchEvents, Fixture
 from scraper.classes.LeagueTable import LeagueTable
 from scraper.classes.LinksList import LinksList
-from scraper.utils.utils import save_to_file, parse_dates
 
 
 def parse_home_events(home_events_raw: str) -> MatchEvents:
@@ -96,20 +94,18 @@ def get_fixtures(soup, table: LeagueTable):
 
     rows = tables[1].find_all('td', class_='main')[10].find_all('table')
     for row in rows:
-        save_to_file(str(row), "ZPNs.html")
+        utils.save_to_file(str(row), "ZPNs.html")
         if "Kolejka" in row.text.strip():
             if fixture.matches_count() > 0:
                 fixtures.add_fixture(fixture)
             round_number = int(re.search(r'Kolejka\s+(\d+)', row.text).group(1))
-            fixture.round_number = round_number
+            fixture = Fixture(round_number)
             matches = True
             print(f'\n\nKolejka {round_number}')
         elif matches and round_number>0:
             for match in row.find_all('tr'):
-                save_to_file(str(match), "ZPNs.html")
                 match_data = match.find_all('td')
                 if not match_data[0].find_all('b'):
-                    if vs.home_team: fixture.add_match(vs)
                     try:
                         vs = Match(
                             False,
@@ -121,22 +117,24 @@ def get_fixtures(soup, table: LeagueTable):
                             MatchEvents(),
                             MatchEvents()
                         )
+                        fixture.add_match(vs)
                         print(f'Meczyk: {vs.home_team} - {vs.away_team}')
                     except:
                         print(f'Row skipped: {str(match_data)}')
                 elif table.is_team_in_league(match_data[0].text):
-                    if vs.home_team: fixture.add_match(vs)
+
                     try:
                         vs = Match(
                             True,
                             match_data[0].text,
                             match_data[2].text,
-                            parse_dates(match_data[3].text, utils.give_current_season()),
+                            utils.parse_dates(match_data[3].text, utils.give_current_season()),
                             int(re.search(r'^(.*?)-', match_data[1].text).group(1)),
                             int(re.search(r'-(.*)$', match_data[1].text).group(1)),
                             MatchEvents(),
                             MatchEvents()
                         )
+                        fixture.add_match(vs)
                         print(f'Meczyk: {vs.home_team} - {vs.away_team}')
                     except:
                         print(f'match_data0: {match_data[0].text}; match_data1: {match_data[1].text}; match_data2: {match_data[2].text}; match_data3: {match_data[3].text}')
