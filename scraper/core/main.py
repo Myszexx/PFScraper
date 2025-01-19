@@ -1,4 +1,4 @@
-import ninety_minutes.parsers.ZPNs as ZPN
+import scraper.ninety_minutes.parsers.ZPNs as ZPN
 
 debug = True
 print(f'Witaj w scraperze danych piłkarskich, wybierz serwis z którego będziesz scrapował:\n1) minuts.pl\n2) TBD')

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package scraper;
+
+service ScraperService {
+  rpc GetNinetyZPNs (ScraperRequest) returns (ScraperResponse);
+  rpc GetNinetyLeagues (ScraperRequest) returns (ScraperResponse);
+  rpc GetNinetyLeagueStandings (ScraperRequest) returns (ScraperResponse);
+  rpc GetNinetyFixtures (ScraperRequest) returns (ScraperResponse);
+}
+
+message ScraperRequest {
+  string url = 1;
+}
+
+message ScraperResponse {
+  string data = 1;
+}
