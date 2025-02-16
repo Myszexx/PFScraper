@@ -2,15 +2,14 @@ version: '3.8'
 
 services:
   grpc_server:
-    build: 
+    build:
       context: .
-      dockerfile: Dockerfile.server
+      dockerfile: Dockerfile
     container_name: grpc_server
-    networks:
-      - my_network
     ports:
       - "50051:50051"
-
+    networks:
+      - my_network
 
 networks:
   my_network:
