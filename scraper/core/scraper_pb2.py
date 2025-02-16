@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1ascraper/core/scraper.proto\x12\x07scraper\"\x1d\n\x0eScraperRequest\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x1f\n\x0fScraperResponse\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t2\xb2\x02\n\x0eScraperService\x12\x42\n\rGetNinetyZPNs\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponse\x12\x45\n\x10GetNinetyLeagues\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponse\x12M\n\x18GetNinetyLeagueStandings\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponse\x12\x46\n\x11GetNinetyFixtures\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1ascraper/core/scraper.proto\x12\x07scraper\"\x1d\n\x0eScraperRequest\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x1f\n\x0fScraperResponse\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\t2\xf7\x02\n\x0eScraperService\x12\x42\n\rGetNinetyZPNs\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponse\x12\x45\n\x10GetNinetyLeagues\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponse\x12M\n\x18GetNinetyLeagueStandings\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponse\x12\x46\n\x11GetNinetyFixtures\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponse\x12\x43\n\x0eGetNinetyTeams\x12\x17.scraper.ScraperRequest\x1a\x18.scraper.ScraperResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,5 +36,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_SCRAPERRESPONSE']._serialized_start=70
   _globals['_SCRAPERRESPONSE']._serialized_end=101
   _globals['_SCRAPERSERVICE']._serialized_start=104
-  _globals['_SCRAPERSERVICE']._serialized_end=410
+  _globals['_SCRAPERSERVICE']._serialized_end=479
 # @@protoc_insertion_point(module_scope)

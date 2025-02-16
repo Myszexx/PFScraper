@@ -78,7 +78,8 @@ def get_league_standings(soup):
             cells[6].text, #Loses
             cells[5].text, #Draws
             re.search(r'^(.*?)-', cells[7].text).group(1), #Goals shot
-            re.search(r'-(.*)$', cells[7].text).group(1) #Goals conceded
+            re.search(r'-(.*)$', cells[7].text).group(1), #Goals conceded
+            cells[1].find('a')['href'] if cells[1].find('a') else 'URL not found'  # URL
         )
         # teams.add(row.find_all('td')[0].text, row.find_all('td')[1].text, row.find_all('td')[2].text, row.find_all('td')[3].text)
     return teams

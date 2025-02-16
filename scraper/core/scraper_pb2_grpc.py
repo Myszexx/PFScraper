@@ -5,7 +5,7 @@ import warnings
 
 from scraper.core import scraper_pb2 as scraper_dot_core_dot_scraper__pb2
 
-GRPC_GENERATED_VERSION = '1.70.0rc1'
+GRPC_GENERATED_VERSION = '1.70.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -54,6 +54,11 @@ class ScraperServiceStub(object):
                 request_serializer=scraper_dot_core_dot_scraper__pb2.ScraperRequest.SerializeToString,
                 response_deserializer=scraper_dot_core_dot_scraper__pb2.ScraperResponse.FromString,
                 _registered_method=True)
+        self.GetNinetyTeams = channel.unary_unary(
+                '/scraper.ScraperService/GetNinetyTeams',
+                request_serializer=scraper_dot_core_dot_scraper__pb2.ScraperRequest.SerializeToString,
+                response_deserializer=scraper_dot_core_dot_scraper__pb2.ScraperResponse.FromString,
+                _registered_method=True)
 
 
 class ScraperServiceServicer(object):
@@ -83,6 +88,12 @@ class ScraperServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetNinetyTeams(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ScraperServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -103,6 +114,11 @@ def add_ScraperServiceServicer_to_server(servicer, server):
             ),
             'GetNinetyFixtures': grpc.unary_unary_rpc_method_handler(
                     servicer.GetNinetyFixtures,
+                    request_deserializer=scraper_dot_core_dot_scraper__pb2.ScraperRequest.FromString,
+                    response_serializer=scraper_dot_core_dot_scraper__pb2.ScraperResponse.SerializeToString,
+            ),
+            'GetNinetyTeams': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetNinetyTeams,
                     request_deserializer=scraper_dot_core_dot_scraper__pb2.ScraperRequest.FromString,
                     response_serializer=scraper_dot_core_dot_scraper__pb2.ScraperResponse.SerializeToString,
             ),
@@ -213,6 +229,33 @@ class ScraperService(object):
             request,
             target,
             '/scraper.ScraperService/GetNinetyFixtures',
+            scraper_dot_core_dot_scraper__pb2.ScraperRequest.SerializeToString,
+            scraper_dot_core_dot_scraper__pb2.ScraperResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetNinetyTeams(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/scraper.ScraperService/GetNinetyTeams',
             scraper_dot_core_dot_scraper__pb2.ScraperRequest.SerializeToString,
             scraper_dot_core_dot_scraper__pb2.ScraperResponse.FromString,
             options,

@@ -7,6 +7,7 @@ service ScraperService {
   rpc GetNinetyLeagues (ScraperRequest) returns (ScraperResponse);
   rpc GetNinetyLeagueStandings (ScraperRequest) returns (ScraperResponse);
   rpc GetNinetyFixtures (ScraperRequest) returns (ScraperResponse);
+  rpc GetNinetyTeams (ScraperRequest) returns (ScraperResponse);
 }
 
 message ScraperRequest {
