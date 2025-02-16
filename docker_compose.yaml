@@ -3,7 +3,6 @@ version: '3.8'
 services:
   grpc_server:
     build:
-      context: .
       dockerfile: Dockerfile
     container_name: grpc_server
     ports:

@@ -1,23 +1,21 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim
-
+FROM python:3.12
 
 ENV PYTHONUNBUFFERED 1
-# Skopiuj bieżący katalog do /app w kontenerze
+
+# Copy the current directory to /app in the container
 COPY . /app
 
-# Ustaw katalog roboczy
 WORKDIR /app
 
-# Zainstaluj zależności
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Ustaw zmienną środowiskową PYTHONPATH, aby Python widział moduł scraper
+# Set the PYTHONPATH environment variable so Python can see the scraper module
 ENV PYTHONPATH=/app
 
-# Udostępnij port 50051
+# Expose port 50051
 EXPOSE 50051
 
-# Uruchom serwer gRPC
-CMD ["python", "/scraper/core/scraper_server.py"]
-
+# Run the gRPC server
+CMD ["python", "scraper/core/scraper_server.py"]

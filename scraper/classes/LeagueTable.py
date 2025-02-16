@@ -35,7 +35,8 @@ class LeagueTable:
 
     def print(self):
         for i in range(len(self.data)):
-            print(f'{self.data[i]['standing']}: {self.data[i]['team']}')
+            row = self.data[i]
+            print(f'{row['standing']}: {row['team']}')
 
     def get_json(self):
         return json.dumps(self.data)

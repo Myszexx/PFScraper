@@ -13,4 +13,5 @@ class LinksList:
 
     def print(self):
         for i in range(len(self.data)):
-            print(f'{i}: {self.data[i]['to']}')
+            row = self.data[i]
+            print(f"{i}: {row['to']}")
