@@ -3,7 +3,7 @@ from scraper.classes.LinksList import LinksList
 
 class Team:
     def __init__(self, name: str, url:str, seasons:LinksList):
-        self.name = name
+        self.name = name.strip()
         self.url = url
         self.seasons = seasons
 
