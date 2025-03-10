@@ -24,7 +24,9 @@ class LeagueTable:
         self.data.sort(key=lambda x: x['standing'])
 
     def get_all(self):
-        return self.data
+        data = self.data
+
+        return data
 
     def get_team_at(self, index):
         return self.data[index-1]
@@ -39,7 +41,18 @@ class LeagueTable:
             print(f'{row['standing']}: {row['team']}')
 
     def get_json(self):
-        return json.dumps(self.data)
+        ret = []
+        for item in self.data:
+            itm = {}
+            for key in item:
+                if key != 'team':
+                    itm[key] = item[key]
+                else:
+                    tmp = item[key].get_all()
+                    itm['name'] = tmp['name']
+                    itm['url'] = tmp['url']
+            ret.append(itm)
+        return ret
 
     def is_team_in_league(self, team_name):
         for team in self.data:

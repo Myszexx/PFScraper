@@ -9,7 +9,7 @@ def get_team_data(soup,name,url):
     team = Team(name,url,LinksList())
     for row in tables[1].find_all('tr'):
         if plays:
-            team.append_season({'to': row.find_all('td')[0].text, 'link': row.find_all('td')[0].find('a')['href']})
+            team.append_season({'name': row.find_all('td')[0].text, 'url': row.find_all('td')[0].find('a')['href']})
         if 'Rozgrywki z udziałem' in row.text:
             plays = True
     return team

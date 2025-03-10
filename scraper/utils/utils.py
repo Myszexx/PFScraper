@@ -43,8 +43,8 @@ def chooser(ll: LinksList, debug=False):
     else:
         a = 1
     choosed = ll.get_to(a)
-    print(f'Przechodzimy do {choosed["to"]}')
-    html = get_html_from_ninety(choosed['link'])
+    print(f'Przechodzimy do {choosed["name"]}')
+    html = get_html_from_ninety(choosed['url'])
 
     return html
 
