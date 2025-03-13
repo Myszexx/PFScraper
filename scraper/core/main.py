@@ -18,7 +18,7 @@ html = ZPN.utils.chooser(leagues)#,debug=debug)
 
 # #Obrabiamy dostępne dane
 league = ZPN.get_league_standings(html)
-# print(league.get_json())
+print(league.get_json())
 
 html = ZPN.utils.get_html_from_ninety(league.get_team_at(1)['url'])
 # team = TP.get_team_data(html, league.get_team_at(1)['team'],league.get_team_at(1)['url'])
@@ -27,4 +27,4 @@ html = ZPN.utils.get_html_from_ninety(league.get_team_at(1)['url'])
 fixtures = ZPN.get_fixtures(html, league)
 # print("TAK")
 print(fixtures.get_all())
-# ZPN.utils.save_to_file(fixtures.get_json(), 'fixtures.json')
+ZPN.utils.save_to_file(fixtures.get_json(), 'fixtures.json')

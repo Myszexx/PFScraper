@@ -3,7 +3,7 @@ from scraper.classes.LinksList import LinksList
 
 class Team:
     def __init__(self, name: str, url:str, seasons:LinksList):
-        self.name = name.strip()
+        self.name = name.strip() if isinstance(name, str) else name
         self.url = url
         self.seasons = seasons
 
@@ -11,7 +11,7 @@ class Team:
         return {'name': self.name, 'url': self.url, 'seasons': self.seasons.get_all()}
 
     def append_season(self, season):
-        self.seasons.add(season['name'], season['url'])
+        self.seasons.add(season['name'].strip(), season['url'])
 
     def print(self):
         print(f'{self.name}({self.url})')
