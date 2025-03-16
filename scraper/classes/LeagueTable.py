@@ -10,7 +10,7 @@ class LeagueTable:
 
     def add(self, team: str, standing: int, points: int, wins: int, loses: int, draws: int, goals_shot: int, goals_conceded: int, url: str):
         self.data.append({
-            'team': Team(team, url,LinksList()),
+            'team': Team(team.strip(), url,LinksList()),
             'standing': int(standing),
             'matches': wins + loses + draws,
             'points': int(points),
@@ -56,7 +56,7 @@ class LeagueTable:
 
     def is_team_in_league(self, team_name):
         for team in self.data:
-            if team['team'] == team_name.strip():
+            if team_name.strip().__contains__(team['team'].team_name()):
                 return True
         print(f'Team {team_name} not found in league')
         return False

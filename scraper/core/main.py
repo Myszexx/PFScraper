@@ -20,7 +20,7 @@ html = ZPN.utils.chooser(leagues)#,debug=debug)
 league = ZPN.get_league_standings(html)
 print(league.get_json())
 
-html = ZPN.utils.get_html_from_ninety(league.get_team_at(1)['url'])
+# html = ZPN.utils.get_html_from_ninety(league.get_team_at(1)['url'])
 # team = TP.get_team_data(html, league.get_team_at(1)['team'],league.get_team_at(1)['url'])
 # print(team.get_all())
 

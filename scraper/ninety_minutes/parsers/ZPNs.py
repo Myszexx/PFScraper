@@ -106,13 +106,15 @@ def get_fixtures(soup, table: LeagueTable):
         elif matches and round_number>0:
             for match in row.find_all('tr'):
                 match_data = match.find_all('td')
+                if len(match_data)<1:
+                    continue
                 if not match_data[0].find_all('b'):
                     try:
                         vs = Match(
                             False,
-                            match_data[0].text,
-                            match_data[2].text,
-                            None,
+                            match_data[0].text.strip(),
+                            match_data[2].text.strip(),
+                            None,#utils.parse_dates(match_data[3].text, utils.give_current_season()), Bo jeszcze sie nie odbylyu
                             -1,
                             -1,
                             MatchEvents(),
@@ -127,8 +129,8 @@ def get_fixtures(soup, table: LeagueTable):
                     try:
                         vs = Match(
                             True,
-                            match_data[0].text,
-                            match_data[2].text,
+                            match_data[0].text.strip(),
+                            match_data[2].text.strip(),
                             utils.parse_dates(match_data[3].text, utils.give_current_season()),
                             int(re.search(r'^(.*?)-', match_data[1].text).group(1)),
                             int(re.search(r'-(.*)$', match_data[1].text).group(1)),
@@ -138,7 +140,7 @@ def get_fixtures(soup, table: LeagueTable):
                         fixture.add_match(vs)
                         print(f'Meczyk: {vs.home_team} - {vs.away_team}')
                     except:
-                        print(f'match_data0: {match_data[0].text}; match_data1: {match_data[1].text}; match_data2: {match_data[2].text}; match_data3: {match_data[3].text}')
+                        print(f'match_data: {[data.text for data in match_data]}')
                 else:
                     if '(wo)' in match_data[0].text:
                         vs.add_event(MatchEvents().add_event('W.O','','',0),vs.home_goals > 0)

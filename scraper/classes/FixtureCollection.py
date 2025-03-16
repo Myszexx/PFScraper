@@ -94,8 +94,8 @@ class FixtureCollection:
     def get_all(self):
         fixts = []
         for fix in self.data:
-            fixts += fix.to_dict()
+            fixts.append(fix.to_dict())
         return fixts
 
     def get_json(self):
-        return json.dumps([fixture.to_dict() for fixture in self.data])
+        return json.dumps({"data":self.get_all()})

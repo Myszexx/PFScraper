@@ -8,8 +8,8 @@ services:
     ports:
       - "50051:50051"
     networks:
-      - my_network
+      - coachcraft_network
 
 networks:
-  my_network:
-    driver: bridge
+  coachcraft_network:
+    external: true
