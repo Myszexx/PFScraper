@@ -1,5 +1,5 @@
-from scraper.classes.LinksList import LinksList
-from scraper.classes.Team import Team
+from API.ninety_mins.scraper.classes.LinksList import LinksList
+from API.ninety_mins.scraper.classes.Team import Team
 
 
 def get_team_data(soup,name,url):

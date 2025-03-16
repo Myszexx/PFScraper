@@ -2,7 +2,7 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 
-from scraper.classes.LinksList import LinksList
+from ..classes.LinksList import LinksList
 
 MONTHS = {
     "stycznia": 1,

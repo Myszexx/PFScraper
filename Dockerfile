@@ -14,8 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Set the PYTHONPATH environment variable so Python can see the scraper module
 ENV PYTHONPATH=/app
 
-# Expose port 50051
-EXPOSE 50051
-
-# Run the gRPC server
-CMD ["python", "scraper/core/scraper_server.py"]
+CMD ["python","manage.py","runserver","8001"]

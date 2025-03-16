@@ -1,7 +1,5 @@
-import json
-
-from scraper.classes.LinksList import LinksList
-from scraper.classes.Team import Team
+from .LinksList import LinksList
+from .Team import Team
 
 
 class LeagueTable:

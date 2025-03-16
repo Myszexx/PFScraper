@@ -1,9 +1,9 @@
 import datetime
 import re
-import scraper.utils.utils as utils
-from scraper.classes.FixtureCollection import FixtureCollection, Match, MatchEvents, Fixture
-from scraper.classes.LeagueTable import LeagueTable
-from scraper.classes.LinksList import LinksList
+from  ...utils.utils import give_current_season, save_to_file, parse_dates
+from ...classes.FixtureCollection import FixtureCollection, Match, MatchEvents, Fixture
+from ...classes.LeagueTable import LeagueTable
+from ...classes.LinksList import LinksList
 
 
 def parse_home_events(home_events_raw: str) -> MatchEvents:
@@ -59,7 +59,8 @@ def get_zpns_list(soup):
 def get_leagues_list(soup):
     tables = soup.find_all('table')
     leagues = LinksList()
-    [leagues.add(league.text, league.attrs['href']) for league in tables[3].find_all('a') if str(utils.give_current_season()) in league.text]
+    [leagues.add(league.text, league.attrs['href']) for league in tables[3].find_all('a') if str(
+        give_current_season()) in league.text]
 
     return leagues
 
@@ -95,7 +96,7 @@ def get_fixtures(soup, table: LeagueTable):
 
     rows = tables[1].find_all('td', class_='main')[10].find_all('table')
     for row in rows:
-        utils.save_to_file(str(row), "ZPNs.html")
+        save_to_file(str(row), "ZPNs.html")
         if "Kolejka" in row.text.strip():
             if fixture.matches_count() > 0:
                 fixtures.add_fixture(fixture)
@@ -131,7 +132,7 @@ def get_fixtures(soup, table: LeagueTable):
                             True,
                             match_data[0].text.strip(),
                             match_data[2].text.strip(),
-                            utils.parse_dates(match_data[3].text, utils.give_current_season()),
+                            parse_dates(match_data[3].text, give_current_season()),
                             int(re.search(r'^(.*?)-', match_data[1].text).group(1)),
                             int(re.search(r'-(.*)$', match_data[1].text).group(1)),
                             MatchEvents(),

@@ -1,4 +1,4 @@
-from scraper.classes.LinksList import LinksList
+from .LinksList import LinksList
 
 
 class Team:
