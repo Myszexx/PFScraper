@@ -1,6 +1,9 @@
+import requests
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
+from rest_framework.views import APIView
 
 # import .API.core.scraper.ninety_minutes.parsers.ZPNs as zpn
 # import .API.core.scraper.utils.utils as utils
@@ -10,6 +13,12 @@ import json
 
 
 # Create your views here.
+
+class Status(APIView):
+    permission_class = [AllowAny]
+    def get(self,request,*args,**kwargs):
+        r = requests.get('http://www.90minut.pl')
+        return Response(status=r.status_code)
 
 class ZPNsV(generics.ListAPIView):
     def get(self, request, *args, **kwargs):

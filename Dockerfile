@@ -1,4 +1,4 @@
-# Use an official Python runtime as a parent image
+# Use an official Python runtime as a pImproved data handling in FixtureCollection, LeagueTable, and ZPNs: updated network settings, enhanced JSON output, and ensured proper string handlingarent image
 FROM python:3.12
 
 ENV PYTHONUNBUFFERED 1
