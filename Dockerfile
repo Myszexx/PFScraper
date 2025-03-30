@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Set the PYTHONPATH environment variable so Python can see the scraper module
 ENV PYTHONPATH=/app
 
-CMD ["python","manage.py","runserver","8001"]
+CMD ["python","API/manage.py","runserver","8001"]
